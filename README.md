@@ -13,7 +13,7 @@
 - [X] Variables
 - [ ] Strings
 - [ ] Comments
-- [ ] Comparisons and Logical Operations
+- [X] Comparisons and Logical Operations
 - [ ] If Statement 
 - [ ] For and While Statements
 - [ ] Multi-line-Statements
