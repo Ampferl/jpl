@@ -8,14 +8,15 @@
 
 ## ToDo
 - [X] Lexer
-- [X] Parser
 - [X] Interpreter
 - [X] Variables
+- [ ] Modulo (%)
 - [ ] Strings
 - [ ] Comments
 - [X] Comparisons and Logical Operations
-- [X] If Statement 
-- [ ] For and While Statements
+- [X] if/elif/else Statements
+- [X] for Loops
+- [X] while Loops
 - [ ] Multi-line-Statements
 - [ ] Functions
 - [ ] Built-in-Functions
