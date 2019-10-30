@@ -14,7 +14,7 @@
 - [ ] Strings
 - [ ] Comments
 - [X] Comparisons and Logical Operations
-- [ ] If Statement 
+- [X] If Statement 
 - [ ] For and While Statements
 - [ ] Multi-line-Statements
 - [ ] Functions
