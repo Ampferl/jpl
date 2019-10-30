@@ -107,8 +107,8 @@ TT_POW			= 'POW'
 TT_EQ			= 'EQ'
 TT_LPAREN   	= 'LPAREN'
 TT_RPAREN   	= 'RPAREN'
-# TT_LBRACE		= 'LBRACE' 
-# TT_RBRACE		= 'RBRACE' 
+TT_LBRACE		= 'LBRACE' #
+TT_RBRACE		= 'RBRACE' #
 TT_EE			= 'EE' 
 TT_NE			= 'NE' 
 TT_LT			= 'LT' 
@@ -194,6 +194,12 @@ class Lexer:
 				self.advance()
 			elif self.current_char == ')':
 				tokens.append(Token(TT_RPAREN, pos_start=self.pos))
+				self.advance()
+			elif self.current_char == '{':
+				tokens.append(Token(TT_LBRACE, pos_start=self.pos))
+				self.advance()
+			elif self.current_char == '}':
+				tokens.append(Token(TT_RBRACE, pos_start=self.pos))
 				self.advance()
 			elif self.current_char == '!':
 				token, error = self.make_not_equals()
@@ -415,13 +421,32 @@ class Parser:
 		res.register_advancement()
 		self.advance()
 
+		if not self.current_tok.type == TT_LPAREN:
+			return res.failure(InvalidSyntaxError(
+				self.current_tok.pos_start, self.current_tok.pos_end,
+				f"Expected '('"
+			))
+
+		res.register_advancement()
+		self.advance()
+
 		condition = res.register(self.expr())
 		if res.error: return res
 
-		if not self.current_tok.matches(TT_KEYWORD, 'then'):
+
+		if not self.current_tok.type == TT_RPAREN:
 			return res.failure(InvalidSyntaxError(
 				self.current_tok.pos_start, self.current_tok.pos_end,
-				f"Expected 'then'"
+				f"Expected ')'"
+			))
+
+		res.register_advancement()
+		self.advance()
+
+		if not self.current_tok.type == TT_LBRACE:
+			return res.failure(InvalidSyntaxError(
+				self.current_tok.pos_start, self.current_tok.pos_end,
+				f"Expected '{{'"
 			))
 
 		res.register_advancement()
@@ -431,17 +456,44 @@ class Parser:
 		if res.error: return res
 		cases.append((condition, expr))
 
-		while self.current_tok.matches(TT_KEYWORD, 'ELIF'):
+		if not self.current_tok.type == TT_RBRACE:
+			return res.failure(InvalidSyntaxError(
+				self.current_tok.pos_start, self.current_tok.pos_end,
+				f"Expected '}}'"
+			))
+
+		res.register_advancement()
+		self.advance()
+
+		while self.current_tok.matches(TT_KEYWORD, 'elif'):
+			res.register_advancement()
+			self.advance()
+
+			if not self.current_tok.type == TT_LPAREN:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					f"Expected '('"
+				))
+
 			res.register_advancement()
 			self.advance()
 
 			condition = res.register(self.expr())
 			if res.error: return res
 
-			if not self.current_tok.matches(TT_KEYWORD, 'then'):
+			if not self.current_tok.type == TT_RPAREN:
 				return res.failure(InvalidSyntaxError(
 					self.current_tok.pos_start, self.current_tok.pos_end,
-					f"Expected 'then'"
+					f"Expected ')'"
+				))
+
+			res.register_advancement()
+			self.advance()
+
+			if not self.current_tok.type == TT_LBRACE:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					f"Expected '{{'"
 				))
 
 			res.register_advancement()
@@ -449,14 +501,41 @@ class Parser:
 
 			expr = res.register(self.expr())
 			if res.error: return res
-			cases.append(condition, expr)
+			cases.append((condition, expr))
+
+			if not self.current_tok.type == TT_RBRACE:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					f"Expected '}}'"
+				))
+
+			res.register_advancement()
+			self.advance()
 
 		if self.current_tok.matches(TT_KEYWORD, 'else'):
 			res.register_advancement()
 			self.advance()
 
+			if not self.current_tok.type == TT_LBRACE:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					f"Expected '{{'"
+				))
+
+			res.register_advancement()
+			self.advance()
+
 			else_case = res.register(self.expr())
 			if res.error: return res
+
+			if not self.current_tok.type == TT_RBRACE:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					f"Expected '}}'"
+				))
+
+			res.register_advancement()
+			self.advance()
 
 		return res.success(IfNode(cases, else_case))
 
