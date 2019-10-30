@@ -1,28 +1,36 @@
-expr    	: KEYWORD:VAR IDENTIFIER EQ expr
-			: comp-expr ((KEYWORD:AND|KEYWORD:OR) comp-expr)*
+expr    		: KEYWORD:VAR IDENTIFIER EQ expr
+				: comp-expr ((KEYWORD:AND|KEYWORD:OR) comp-expr)*
 
-comp-expr	: NOT comp-expr
-			: arith-expr ((EE|LT|GT|LTE|GTE) arith-expr)*
+comp-expr		: NOT comp-expr
+				: arith-expr ((EE|LT|GT|LTE|GTE) arith-expr)*
 
-arith-expr	: term ((PLUS|MINUS) term)*
+arith-expr		: term ((PLUS|MINUS) term)*
 
-term    	: factor ((MUL|DIV) factor)*
+term    		: factor ((MUL|DIV) factor)*
 
-factor  	: (PLUS|MINUS) factor
-			: power
+factor  		: (PLUS|MINUS) factor
+				: power
 
-power		: atom (POW factor)*
+power			: call (POW factor)*
 
-atom		: INT|FLOAT|IDENTIFIER
-			: LPAREN expr RPAREN
-			: if-expr
-			: for-expr
-			: while-expr
+call			: atom (LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? RPAREN)?
 
-if-expr		: KEYWORD:IF LPAREN expr RPAREN LBRACE expr RBRACE
-			  (KEYWORD:ELIF LPAREN expr RPAREN LBRACE expr RBRACE)*
-			  (KEYWORD:ELSE RPAREN expr RBRACE)?
+atom			: INT|FLOAT|IDENTIFIER
+				: LPAREN expr RPAREN
+				: if-expr
+				: for-expr
+				: while-expr
+				: function-def
 
-for-expr	: KEYWORD:FOR LPAREN IDENTIFIER EQ expr SC expr (SC expr)? LBRACE expr RBRACE
+if-expr			: KEYWORD:IF LPAREN expr RPAREN LBRACE expr RBRACE
+				  (KEYWORD:ELIF LPAREN expr RPAREN LBRACE expr RBRACE)*
+				  (KEYWORD:ELSE RPAREN expr RBRACE)?
 
-while-expr	: KEYWORD:WHILE LPAREN expr RPAREN LBRACE expr RBRACE
+for-expr		: KEYWORD:FOR LPAREN IDENTIFIER EQ expr SC expr 
+  				  (SC expr)? LBRACE expr RBRACE
+
+while-expr		: KEYWORD:WHILE LPAREN expr RPAREN LBRACE expr RBRACE
+
+function-def	: KEYWORD:FUNCTION IDENTIFIER? 
+				  LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? 
+				  RPAREN LBRACE expr RBRACE
