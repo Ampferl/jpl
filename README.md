@@ -21,5 +21,5 @@
 - [X] Functions
 - [ ] Built-in-Functions
 - [ ] Return, Continue, Break
-- [ ] Lists
+- [X] Lists
 - [ ] Run Statement
