@@ -19,7 +19,7 @@
 - [X] while Loops
 - [ ] Multi-line-Statements
 - [X] Functions
-- [ ] Built-in-Functions
+- [X] Built-in-Functions
 - [ ] Return, Continue, Break
 - [X] Lists
 - [ ] Run Statement
