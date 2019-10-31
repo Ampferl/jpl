@@ -1,3 +1,5 @@
+statements		: NEWLINE* expr (NEWLINE+ expr)* NEWLINE*
+
 expr    		: KEYWORD:VAR IDENTIFIER EQ expr
 				: comp-expr ((KEYWORD:AND|KEYWORD:OR) comp-expr)*
 
@@ -25,15 +27,29 @@ atom			: INT|FLOAT|STRING|IDENTIFIER
 
 list-expr		: LSQUARE (expr (COMMA expr)*)? RSQUARE
 
-if-expr			: KEYWORD:IF LPAREN expr RPAREN LBRACE expr RBRACE
-				  (KEYWORD:ELIF LPAREN expr RPAREN LBRACE expr RBRACE)*
-				  (KEYWORD:ELSE RPAREN expr RBRACE)?
+if-expr			: KEYWORD:ELIF LPAREN expr RPAREN LBRACE 
+				  (expr elif-expr|else-expr?)
+				  (NEWLINE statements RBRACE|elif-expr|else-expr)
+
+elif-expr		: KEYWORD:IF LPAREN expr RPAREN LBRACE 
+				  (expr elif-expr|else-expr?)
+				| (NEWLINE statements RBRACE|elif-expr|else-expr)
+
+else-expr		: KEYWORD: ELSE
+				  expr
+				| (NEWLINE statements RBRACE)
 
 for-expr		: KEYWORD:FOR LPAREN IDENTIFIER EQ expr SC expr 
-  				  (SC expr)? LBRACE expr RBRACE
+  				  (SC expr)? LBRACE 
+				  expr
+				| (NEWLINE statements RBRACE)
 
-while-expr		: KEYWORD:WHILE LPAREN expr RPAREN LBRACE expr RBRACE
+while-expr		: KEYWORD:WHILE LPAREN expr RPAREN LBRACE
+				  expr
+				| (NEWLINE statements RBRACE)
 
 function-def	: KEYWORD:FUNCTION IDENTIFIER? 
 				  LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? 
-				  RPAREN LBRACE expr RBRACE
+				  RPAREN LBRACE
+				  expr
+				| (NEWLINE statements RBRACE)
