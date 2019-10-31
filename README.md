@@ -11,7 +11,7 @@
 - [X] Interpreter
 - [X] Variables
 - [ ] Modulo (%)
-- [ ] Strings
+- [X] Strings
 - [ ] Comments
 - [X] Comparisons and Logical Operations
 - [X] if/elif/else Statements
