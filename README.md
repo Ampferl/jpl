@@ -18,7 +18,7 @@
 - [X] for Loops
 - [X] while Loops
 - [ ] Multi-line-Statements
-- [ ] Functions
+- [X] Functions
 - [ ] Built-in-Functions
 - [ ] Return, Continue, Break
 - [ ] Lists
