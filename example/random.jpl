@@ -1,0 +1,15 @@
+# This is some random code
+
+function oopify(pre){
+ return pre + "oop"
+}
+
+run("example/funcs.jpl")
+
+print("Welcome to some random c0de!")
+
+for(i=0;5){
+ print(oopify("l"))
+ print(oopify("sp"))
+}
+
