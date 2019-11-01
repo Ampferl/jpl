@@ -1667,6 +1667,19 @@ class String(Value):
 		copy.set_context(self.context)
 		return copy
 
+	def get_comparison_eq(self, other):
+		if isinstance(other, String):
+			print()
+			return Number(int(self.value == other.value)).set_context(self.context), None
+		else:
+			return None, Value.illegal_operation(self.pos_start, other.pos_end)
+
+	def get_comparison_ne(self, other):
+		if isinstance(other, String):
+			return Number(int(self.value != other.value)).set_context(self.context), None
+		else:
+			return None, Value.illegal_operation(self.pos_start, other.pos_end)
+
 	def __str__(self):
 		return self.value
 
@@ -1849,11 +1862,9 @@ class BuiltInFunction(BaseFunction):
 
 	def execute_input(self, exec_ctx):
 		typ = exec_ctx.symbol_table.get('type')
-		while True:
-			text = input()
-			if text:
-				string = str(text)
-				break
+		text = input()
+		
+		string = str(text)
 
 		return RTResult().success(String(string))
 

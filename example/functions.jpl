@@ -1,0 +1,55 @@
+# include core functions
+run("core/main.jpl")
+
+function add(a,b){
+    return a+b
+}
+
+function sub(a,b){
+    return a-b
+}
+
+function div(a,b){
+    return a / b
+}
+
+function mul(a,b){
+    return a * b
+}
+
+
+
+print(add(1,2))
+print(sub(2,1))
+print(div(10,2))
+print(mul(3,7))
+
+# Core Functions
+print(pi())
+print(pow(2,3))
+print(mod(5,3))
+
+# Built-in Functions
+var string = "Hello World"
+var list = [1,2,3,4]
+var number = 10
+
+print(is_string(string))
+print(is_number(number))
+print(is_list(list))
+print(is_function(add))
+
+print("--------Lists---------")
+print(list)
+append(list, "Hello")
+print("Append: ")
+print(list)
+pop(list, 4)
+print("Pop: ")
+print(list)
+var listB = [1,3,4]
+extend(list, listB)
+print("Extend: ")
+print(list)
+print("Len: ")
+print(len(list))

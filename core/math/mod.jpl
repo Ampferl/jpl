@@ -1,0 +1,24 @@
+function mod(num, divisor){
+    if(divisor == 0){
+        return False
+    }
+        
+    if(divisor < 0){
+        var divisor = divisor * -1
+    }
+    if(num < 0){
+        var num = num * -1
+    }
+        
+    var i = 1
+    var product = 0
+    while(product <= num){
+        var product = divisor * i 
+        var i = i + 1
+    }
+    
+    var res = num - (product - divisor)
+    
+    return res
+}
+

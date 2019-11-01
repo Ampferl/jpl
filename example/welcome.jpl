@@ -1,0 +1,19 @@
+function startWelcome(check1){
+    if(check1 == "y"){
+        print("Okay :D, lets start!")
+        print("")
+        print("---------------------------------------------------------------")
+        print("------------------------ How it works: ------------------------")
+        print("---------------------------------------------------------------")
+        print("Press any key or answer the questions to walk througt the Welcome Program!")
+        input()
+        print("--> Coming Soon <--")
+    }else{
+        print("Bye Bye")
+    }
+}
+
+print("Welcome to JPL")
+print("Do you want to start? (Enter: y/n)")
+var check1 = input()
+startWelcome(check1)
