@@ -6,4 +6,4 @@
 - [ ] getl(:index, :list)
 - [ ] set_l(:index, :list)
 
-## APPEND TO ALL LIST FUNCTIONS '_l' TO IDENTIFY THEM! (for example 'findl()')
+APPEND TO ALL LIST FUNCTIONS '_l' TO IDENTIFY THEM! (for example 'find_l()')
