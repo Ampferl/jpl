@@ -21,3 +21,88 @@ If everything is installed, you can go to the downloaded folder and enter `pytho
 Now you can use the programming language!
 
 For Example enter: `print("Hello World")`
+
+### Explanations:
+#### Variables
+`var :identifier = :expr`
+
+#### If statements
+You can use only if:
+```
+if(:expr){
+    :statements
+}
+```
+or with elif:
+```
+if(:expr){
+    :statements
+}elif(:expr){
+    :statements
+}
+```
+or also a else at the end:
+```
+if(:expr){
+    :statements
+}else{
+    :statements
+}
+```
+#### For/While Loops
+##### For-Loops:
+```
+for(:start_value;:end_value[;:step]){
+    :statements
+}
+```
+For Example:
+```
+for(i=1;10){
+    print(i)
+}
+```
+##### While-Loops:
+```
+while(:expr){
+    :statements
+}
+```
+For Example:
+```
+var i = 0
+while(i<=10){
+    print(i)
+    var i = i + 1
+}
+```
+Also you can use a `break` or a `continue`!
+#### Functions
+```
+function :func_name(:args){
+    :statements
+}
+```
+Also you can use a `return`!
+#### Run Code Files
+```
+run(:path_to_file)
+```
+### Some Extra Functions
+#### I/O Functions
+- `print(expr)`
+- `input()`
+#### Check expr Type
+- `is_number(expr)`
+- `is_string(expr)`
+- `is_list(expr)`
+- `is_function(expr)`
+#### Lists
+- `append(list, value)`
+- `pop(list, index)`
+- `extend(listA, listB)`
+- `len(list)`
+#### Math
+- `pow(base, exponent)`
+- `pi()`
+- `mod(num, divisor)`

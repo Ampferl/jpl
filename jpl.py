@@ -183,7 +183,9 @@ class Lexer:
 		while self.current_char != None:
 			if self.current_char in ' \t':
 				self.advance()
-			if self.current_char == '#':
+			elif self.current_char == '	':
+				self.advance()
+			elif self.current_char == '#':
 				self.skip_comment()
 			elif self.current_char in DIGITS:
 				tokens.append(self.make_number())
@@ -1637,7 +1639,6 @@ class Number(Value):
 Number.null = Number(0)
 Number.true = Number(1)
 Number.false = Number(0)
-Number.MATH_pi = Number(math.pi)
 
 
 class String(Value):
@@ -1847,31 +1848,14 @@ class BuiltInFunction(BaseFunction):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 	def execute_input(self, exec_ctx):
+		typ = exec_ctx.symbol_table.get('type')
 		while True:
 			text = input()
-			if isinstance(text, int):
-				try:
-					number = int(text)
-					txttype = "number"
-					break
-				except:
-					print(f"'{text}' must be an integer. Try again!")
-			elif isinstance(text, float):
-				try:
-					number = float(text)
-					txttype = "number"
-					break
-				except:
-					print(f"'{text}' must be an float. Try again!")
-			elif isinstance(text, str):
+			if text:
 				string = str(text)
-				txttype = "string"
 				break
 
-		if txttype == "string":
-			return RTResult().success(String(string))
-		elif txttype == "number":
-			return RTResult().success(Number(number))
+		return RTResult().success(String(string))
 
 	execute_input.arg_names = []
 
@@ -2345,7 +2329,6 @@ global_symbol_table = SymbolTable()
 global_symbol_table.set("null", Number.null)
 global_symbol_table.set("false", Number.false)
 global_symbol_table.set("true", Number.true)
-global_symbol_table.set("MATH_pi", Number.MATH_pi)
 
 global_symbol_table.set("print", BuiltInFunction.print)
 global_symbol_table.set("input", BuiltInFunction.input)
