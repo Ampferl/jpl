@@ -20,6 +20,6 @@
 - [X] Multi-line-Statements
 - [X] Functions
 - [X] Built-in-Functions
-- [ ] Return, Continue, Break
+- [X] Return, Continue, Break
 - [X] Lists
 - [ ] Run Statement
