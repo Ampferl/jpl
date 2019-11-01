@@ -1900,7 +1900,7 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-	def execute_append(self, exec_ctx):
+	def execute_append_l(self, exec_ctx):
 		list_ = exec_ctx.symbol_table.get("list")
 		value = exec_ctx.symbol_table.get("value")
 
@@ -1913,11 +1913,11 @@ class BuiltInFunction(BaseFunction):
 
 		list_.elements.append(value)
 		return RTResult().success(Number.null)
-	execute_append.arg_names = ['list', 'value']
+	execute_append_l.arg_names = ['list', 'value']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-	def execute_pop(self, exec_ctx):
+	def execute_pop_l(self, exec_ctx):
 		list_ = exec_ctx.symbol_table.get("list")
 		index = exec_ctx.symbol_table.get("index")
 
@@ -1945,11 +1945,11 @@ class BuiltInFunction(BaseFunction):
 			))
 		return RTResult().success(element)
 	
-	execute_pop.arg_names = ['list', 'index']
+	execute_pop_l.arg_names = ['list', 'index']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-	def execute_extend(self, exec_ctx):
+	def execute_extend_l(self, exec_ctx):
 		listA = exec_ctx.symbol_table.get("listA")
 		listB = exec_ctx.symbol_table.get("listB")
 
@@ -1970,11 +1970,11 @@ class BuiltInFunction(BaseFunction):
 		listA.elements.extend(listB.elements)
 		return RTResult().success(Number.null)
 
-	execute_extend.arg_names = ['listA', 'listB']
+	execute_extend_l.arg_names = ['listA', 'listB']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-	def execute_len(self, exec_ctx):
+	def execute_len_l(self, exec_ctx):
 		list_ = exec_ctx.symbol_table.get('list')
 
 		if not isinstance(list_, List):
@@ -1986,7 +1986,7 @@ class BuiltInFunction(BaseFunction):
 
 		return RTResult().success(Number(len(list_.elements)))
 
-	execute_len.arg_names = ['list']
+	execute_len_l.arg_names = ['list']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -2034,11 +2034,11 @@ BuiltInFunction.is_number					= BuiltInFunction("is_number")
 BuiltInFunction.is_string					= BuiltInFunction("is_string")
 BuiltInFunction.is_list						= BuiltInFunction("is_list")
 BuiltInFunction.is_function					= BuiltInFunction("is_function")
-BuiltInFunction.append						= BuiltInFunction("append")
-BuiltInFunction.pop							= BuiltInFunction("pop")
-BuiltInFunction.extend						= BuiltInFunction("extend")
+BuiltInFunction.append_l						= BuiltInFunction("append_l")
+BuiltInFunction.pop_l							= BuiltInFunction("pop_l")
+BuiltInFunction.extend_l						= BuiltInFunction("extend_l")
 BuiltInFunction.run							= BuiltInFunction("run")
-BuiltInFunction.len							= BuiltInFunction("len")
+BuiltInFunction.len_l							= BuiltInFunction("len_l")
 
 #######################################
 # CONTEXT
@@ -2347,10 +2347,10 @@ global_symbol_table.set("is_number", BuiltInFunction.is_number)
 global_symbol_table.set("is_string", BuiltInFunction.is_string)
 global_symbol_table.set("is_list", BuiltInFunction.is_list)
 global_symbol_table.set("is_function", BuiltInFunction.is_function)
-global_symbol_table.set("append", BuiltInFunction.append)
-global_symbol_table.set("pop", BuiltInFunction.pop)
-global_symbol_table.set("extend", BuiltInFunction.extend)
-global_symbol_table.set("len", BuiltInFunction.len)
+global_symbol_table.set("append_l", BuiltInFunction.append_l)
+global_symbol_table.set("pop_l", BuiltInFunction.pop_l)
+global_symbol_table.set("extend_l", BuiltInFunction.extend_l)
+global_symbol_table.set("len_l", BuiltInFunction.len_l)
 global_symbol_table.set("run", BuiltInFunction.run)
 
 

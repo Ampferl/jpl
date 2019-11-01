@@ -98,10 +98,10 @@ run(:path_to_file)
 - `is_list(expr)`
 - `is_function(expr)`
 #### Lists
-- `append(list, value)`
-- `pop(list, index)`
-- `extend(listA, listB)`
-- `len(list)`
+- `append_l(list, value)`
+- `pop_l(list, index)`
+- `extend_l(listA, listB)`
+- `len_l(list)`
 #### Math
 - `pow(base, exponent)`
 - `pi()`
