@@ -1,0 +1,5 @@
+function time(){
+    var date = split(datetime(), " ")
+    var time = split(date / 1, ".")
+    return time / 0
+}

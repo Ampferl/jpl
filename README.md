@@ -112,3 +112,7 @@ run(:path_to_file)
 - `pi()`
 #### Date
 - `datetime()`
+- `date()`
+- `time()`
+
+## [ToDo List](todo.md)

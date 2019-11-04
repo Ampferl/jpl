@@ -2085,7 +2085,9 @@ class BuiltInFunction(BaseFunction):
 				"Second Argument must be string",
 				exec_ctx
 			))
-		return RTResult().success(List((string.value).split(separator.value)))
+		reslist = (string.value).split(separator.value)
+		rest = [String(x) for x in reslist]
+		return RTResult().success(List(rest))
 	execute_split.arg_names = ['string', 'separator']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

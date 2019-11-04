@@ -6,8 +6,8 @@
 - [X] get_l(:list, :index) # *
 - [ ] set_l(:list, :index) # -
 - [X] datetime # some date functions # -
-- - [ ] date # *
-- - [ ] time # *
+- - [X] date # *
+- - [X] time # *
 - [ ] file i/o # to get data from other files # -
 - [ ] seperate language in different files to clean the project # -
 

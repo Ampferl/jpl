@@ -8,3 +8,7 @@ run("core/shell/clear.jpl")
 
 # Lists
 run("core/lists/get_l.jpl")
+
+# Datetime
+run("core/datetime/date.jpl")
+run("core/datetime/time.jpl")
