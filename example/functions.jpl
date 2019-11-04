@@ -53,3 +53,15 @@ print("Extend: ")
 print(list)
 print("Len: ")
 print(len_l(list))
+
+# String to List
+var testString = "Hello World"
+var list1 = split(testString, " ")
+print(list1)
+
+# List to String
+var string1 = join(list1, ",")
+print(string1)
+
+print("--------Date---------")
+print(datetime())

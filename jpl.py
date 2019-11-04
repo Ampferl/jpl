@@ -2065,7 +2065,7 @@ class BuiltInFunction(BaseFunction):
 
 	def execute_datetime(self, exec_ctx):
 		
-		return RTResult().success(String(datetime.datetime.now()))
+		return RTResult().success(String(str(datetime.datetime.now())))
 	execute_datetime.arg_names = []
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -2090,6 +2090,28 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_join(self, exec_ctx):
+		list_ = exec_ctx.symbol_table.get('list')
+		separator = exec_ctx.symbol_table.get('separator')
+		if not isinstance(list_, List):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a List",
+				exec_ctx
+			))
+		if not isinstance(separator, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be string",
+				exec_ctx
+			))
+		relist = str(list_).split(", ")
+		res = (separator.value).join(relist)
+		return RTResult().success(String(res))
+	execute_join.arg_names = ['list', 'separator']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -2103,7 +2125,8 @@ BuiltInFunction.run							= BuiltInFunction("run")
 BuiltInFunction.len_l						= BuiltInFunction("len_l")
 BuiltInFunction.rand						= BuiltInFunction("rand")
 BuiltInFunction.datetime					= BuiltInFunction("datetime")
-BuiltInFunction.split					= BuiltInFunction("split")
+BuiltInFunction.split						= BuiltInFunction("split")
+BuiltInFunction.join						= BuiltInFunction("join")
 
 #######################################
 # CONTEXT
@@ -2420,6 +2443,7 @@ global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("datetime", BuiltInFunction.datetime)
 global_symbol_table.set("split", BuiltInFunction.split)
+global_symbol_table.set("join", BuiltInFunction.join)
 
 
 def run(fn, text):
