@@ -1,0 +1,4 @@
+function get_l(list, index){
+    var data = list / index
+    return data
+}

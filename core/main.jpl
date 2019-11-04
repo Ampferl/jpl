@@ -2,3 +2,9 @@
 run("core/math/pi.jpl")
 run("core/math/mod.jpl")
 run("core/math/pow.jpl")
+
+# Shell
+run("core/shell/clear.jpl")
+
+# Lists
+run("core/lists/get_l.jpl")
