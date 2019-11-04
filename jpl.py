@@ -2154,6 +2154,37 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_replace(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+		replace_this = exec_ctx.symbol_table.get('replace_this')
+		replacer = exec_ctx.symbol_table.get('replacer')
+		if not isinstance(string, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be string",
+				exec_ctx
+			))
+
+		if not isinstance(replace_this, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be string",
+				exec_ctx
+			))
+		if not isinstance(replacer, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Third Argument must be string",
+				exec_ctx
+			))
+
+		
+		res = (string.value).replace(replace_this.value, replacer.value)
+		return RTResult().success(String(res))
+	execute_replace.arg_names = ['string', 'replace_this', 'replacer']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -2170,6 +2201,7 @@ BuiltInFunction.rand						= BuiltInFunction("rand")
 BuiltInFunction.datetime					= BuiltInFunction("datetime")
 BuiltInFunction.split						= BuiltInFunction("split")
 BuiltInFunction.join						= BuiltInFunction("join")
+BuiltInFunction.replace						= BuiltInFunction("replace")
 
 #######################################
 # CONTEXT
@@ -2488,6 +2520,7 @@ global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("datetime", BuiltInFunction.datetime)
 global_symbol_table.set("split", BuiltInFunction.split)
 global_symbol_table.set("join", BuiltInFunction.join)
+global_symbol_table.set("replace", BuiltInFunction.replace)
 
 
 def run(fn, text):

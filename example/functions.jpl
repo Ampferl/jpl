@@ -36,6 +36,7 @@ print(mod(5,3))
 
 # Built-in Functions
 var string = "Hello World"
+var string = replace(string, "Hello", "Servus")
 var list = [1,2,3,4]
 var number = 10
 
@@ -61,8 +62,7 @@ print("- Len: ")
 print(len_l(list))
 print("- String2List")
 # String to List
-var testString = "Hello World"
-var list1 = split(testString, " ")
+var list1 = split(string, " ")
 print(list1)
 print("- List2String")
 # List to String

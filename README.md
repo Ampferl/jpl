@@ -103,6 +103,7 @@ run(:path_to_file)
 - `extend_l(listA, listB)`
 - `len_l(list)`
 - `get_l(list, index)`
+- `set_l(list, index, string)`
 - `split(string, separator)`
 - `join(list, separator)`
 #### Math
@@ -114,5 +115,7 @@ run(:path_to_file)
 - `datetime()`
 - `date()`
 - `time()`
+#### String
+- `replace(string, replace_this, replacer)`
 
 ## [ToDo List](todo.md)
