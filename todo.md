@@ -3,7 +3,7 @@
 - [X] join(:list, :separator) # you can join strings to lists # -
 - [X] replace(:string, :repalce_this, :replacer) # -
 - [X] rand(:start_val, :end_val) # random ints # -
-- [ ] find_l(:list, :string) # find a string in list and get the index # -
+- [X] search_l(:list, :search_string) # find a string in list and get the index # -
 - [X] get_l(:list, :index) # *
 - [X] set_l(:list, :index, :string) # -
 - [X] datetime # some date functions # -

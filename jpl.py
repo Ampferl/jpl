@@ -2154,6 +2154,28 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_search_l(self, exec_ctx):
+		list_ = exec_ctx.symbol_table.get('list')
+		search = exec_ctx.symbol_table.get('search_string')
+		if not isinstance(list_, List):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a List",
+				exec_ctx
+			))
+		if not isinstance(search, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be a String",
+				exec_ctx
+			))
+		relist = str(list_).split(", ")
+		res = relist.index(search.value)
+		return RTResult().success(Number(res))
+	execute_search_l.arg_names = ['list', 'search_string']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 	def execute_replace(self, exec_ctx):
 		string = exec_ctx.symbol_table.get('string')
 		replace_this = exec_ctx.symbol_table.get('replace_this')
@@ -2202,6 +2224,7 @@ BuiltInFunction.datetime					= BuiltInFunction("datetime")
 BuiltInFunction.split						= BuiltInFunction("split")
 BuiltInFunction.join						= BuiltInFunction("join")
 BuiltInFunction.replace						= BuiltInFunction("replace")
+BuiltInFunction.search_l					= BuiltInFunction("search_l")
 
 #######################################
 # CONTEXT
@@ -2521,6 +2544,7 @@ global_symbol_table.set("datetime", BuiltInFunction.datetime)
 global_symbol_table.set("split", BuiltInFunction.split)
 global_symbol_table.set("join", BuiltInFunction.join)
 global_symbol_table.set("replace", BuiltInFunction.replace)
+global_symbol_table.set("search_l", BuiltInFunction.search_l)
 
 
 def run(fn, text):

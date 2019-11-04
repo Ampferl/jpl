@@ -106,6 +106,7 @@ run(:path_to_file)
 - `set_l(list, index, string)`
 - `split(string, separator)`
 - `join(list, separator)`
+- `search_l(list, search_string)`
 #### Math
 - `pow(base, exponent)`
 - `mod(num, divisor)`
