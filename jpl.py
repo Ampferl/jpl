@@ -6,6 +6,7 @@ from strings_with_arrows import *
 
 import string
 import math
+import random
 
 #######################################
 # CONSTANTS
@@ -2028,17 +2029,51 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_rand(self, exec_ctx):
+		start_value = exec_ctx.symbol_table.get('start_val')
+		end_value = exec_ctx.symbol_table.get('end_val')
+
+		if not isinstance(start_value, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First argument must be number",
+				exec_ctx
+			))
+		if not isinstance(end_value, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second argument must be number",
+				exec_ctx
+			))
+
+		try:
+			start_value = int(start_value.value)
+			end_value = int(end_value.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Arguments must be number",
+				exec_ctx
+			))
+	
+		rand = random.randrange(start_value, end_value)
+		return RTResult().success(Number(rand))
+	execute_rand.arg_names = ['start_val', 'end_val']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
 BuiltInFunction.is_string					= BuiltInFunction("is_string")
 BuiltInFunction.is_list						= BuiltInFunction("is_list")
 BuiltInFunction.is_function					= BuiltInFunction("is_function")
-BuiltInFunction.append_l						= BuiltInFunction("append_l")
-BuiltInFunction.pop_l							= BuiltInFunction("pop_l")
-BuiltInFunction.extend_l						= BuiltInFunction("extend_l")
+BuiltInFunction.append_l					= BuiltInFunction("append_l")
+BuiltInFunction.pop_l						= BuiltInFunction("pop_l")
+BuiltInFunction.extend_l					= BuiltInFunction("extend_l")
 BuiltInFunction.run							= BuiltInFunction("run")
-BuiltInFunction.len_l							= BuiltInFunction("len_l")
+BuiltInFunction.len_l						= BuiltInFunction("len_l")
+BuiltInFunction.rand						= BuiltInFunction("rand")
 
 #######################################
 # CONTEXT
@@ -2351,6 +2386,7 @@ global_symbol_table.set("append_l", BuiltInFunction.append_l)
 global_symbol_table.set("pop_l", BuiltInFunction.pop_l)
 global_symbol_table.set("extend_l", BuiltInFunction.extend_l)
 global_symbol_table.set("len_l", BuiltInFunction.len_l)
+global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("run", BuiltInFunction.run)
 
 
