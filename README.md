@@ -1,8 +1,8 @@
-# Welcome to JPL (Jonas Programming Language)
+# Welcome to JPL
 ## About
 ![](https://i.imgur.com/lPuSHq5.png) 
 > 
-> JPL (=Jonas Programming Language) is a own little fun project. Here I code a own Programming Language with an Interpreter. 
+> JPL is a own little fun project. Here I code a own Programming Language with an Interpreter. 
 >
 
 ### What can you do with it?
@@ -102,7 +102,13 @@ run(:path_to_file)
 - `pop_l(list, index)`
 - `extend_l(listA, listB)`
 - `len_l(list)`
+- `get_l(list, index)`
+- `split(string, separator)`
+- `join(list, separator)`
 #### Math
 - `pow(base, exponent)`
-- `pi()`
 - `mod(num, divisor)`
+- `rand(start_value, end_value)`
+- `pi()`
+#### Date
+- `datetime()`
