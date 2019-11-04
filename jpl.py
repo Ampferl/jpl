@@ -7,6 +7,7 @@ from strings_with_arrows import *
 import string
 import math
 import random
+import datetime
 
 #######################################
 # CONSTANTS
@@ -2062,6 +2063,14 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_datetime(self, exec_ctx):
+		
+		return RTResult().success(String(datetime.datetime.now()))
+	execute_datetime.arg_names = []
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -2074,6 +2083,7 @@ BuiltInFunction.extend_l					= BuiltInFunction("extend_l")
 BuiltInFunction.run							= BuiltInFunction("run")
 BuiltInFunction.len_l						= BuiltInFunction("len_l")
 BuiltInFunction.rand						= BuiltInFunction("rand")
+BuiltInFunction.datetime					= BuiltInFunction("datetime")
 
 #######################################
 # CONTEXT
@@ -2388,6 +2398,7 @@ global_symbol_table.set("extend_l", BuiltInFunction.extend_l)
 global_symbol_table.set("len_l", BuiltInFunction.len_l)
 global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("datetime", BuiltInFunction.datetime)
 
 
 def run(fn, text):

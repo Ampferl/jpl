@@ -5,7 +5,9 @@
 - [ ] find_l(:string, :list) # find a string in list and get the index # -
 - [X] get_l(:index, :list) # *
 - [ ] set_l(:index, :list) # -
-- [ ] date/time/unix.. # some date functions # -
+- [X] datetime # some date functions # -
+- - [ ] date # *
+- - [ ] time # *
 - [ ] file i/o # to get data from other files # -
 - [ ] seperate language in different files to clean the project # -
 
