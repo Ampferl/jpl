@@ -16,4 +16,4 @@
 // APPEND TO ALL LIST FUNCTIONS '_l' TO IDENTIFY THEM! (for example 'find_l()')
 
 - \# * Code with JPL
-- \# - Code with Python
+- \# - Code with Pythonl
