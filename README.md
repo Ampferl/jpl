@@ -115,6 +115,10 @@ run(:path_to_file)
 #### Date
 - `datetime()`
 - `date()`
+- `date_year()`
+- `date_month()`
+- `date_month_name()`
+- `date_day()`
 - `time()`
 #### String
 - `replace(string, replace_this, replacer)`
