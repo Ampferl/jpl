@@ -24,9 +24,14 @@ print(sub(2,1))
 print(div(10,2))
 print(mul(3,7))
 
+print("")
+print("--------Core Functions---------")
 # Core Functions
+print("- Pi:")
 print(pi())
+print("- Pow 2^3")
 print(pow(2,3))
+print("- Modulo 5 % 3")
 print(mod(5,3))
 
 # Built-in Functions
@@ -39,29 +44,33 @@ print(is_number(number))
 print(is_list(list))
 print(is_function(add))
 
+print("")
 print("--------Lists---------")
 print(list)
 append_l(list, "Hello")
-print("Append: ")
+print("- Append: ")
 print(list)
 pop_l(list, 4)
-print("Pop: ")
+print("- Pop: ")
 print(list)
 var listB = [1,3,4]
 extend_l(list, listB)
-print("Extend: ")
+print("- Extend: ")
 print(list)
-print("Len: ")
+print("- Len: ")
 print(len_l(list))
-
+print("- String2List")
 # String to List
 var testString = "Hello World"
 var list1 = split(testString, " ")
 print(list1)
-
+print("- List2String")
 # List to String
 var string1 = join(list1, ",")
 print(string1)
 
+print("")
 print("--------Date---------")
 print(datetime())
+print(date())
+print(time())

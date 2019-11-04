@@ -1951,6 +1951,46 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_set_l(self, exec_ctx):
+		list_ = exec_ctx.symbol_table.get("list")
+		index = exec_ctx.symbol_table.get("index")
+		rplce = exec_ctx.symbol_table.get("rplce")
+
+		if not isinstance(list_, List):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First argument must be list",
+				exec_ctx
+			))
+
+
+		if not isinstance(index, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second argument must be number",
+				exec_ctx
+			))
+
+		
+			
+
+		try:
+			if isinstance(index, Number):
+				list_.elements[index.value] = Number(rplce.value)
+			else:
+				list_.elements[index.value] = String(rplce.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Element at this index could not be replace this in the list, because index is out of bounds",
+				exec_ctx
+			))
+		return RTResult().success(list_)
+	
+	execute_set_l.arg_names = ['list', 'index', 'rplce']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 	def execute_extend_l(self, exec_ctx):
 		listA = exec_ctx.symbol_table.get("listA")
 		listB = exec_ctx.symbol_table.get("listB")
@@ -2122,6 +2162,7 @@ BuiltInFunction.is_list						= BuiltInFunction("is_list")
 BuiltInFunction.is_function					= BuiltInFunction("is_function")
 BuiltInFunction.append_l					= BuiltInFunction("append_l")
 BuiltInFunction.pop_l						= BuiltInFunction("pop_l")
+BuiltInFunction.set_l						= BuiltInFunction("set_l")
 BuiltInFunction.extend_l					= BuiltInFunction("extend_l")
 BuiltInFunction.run							= BuiltInFunction("run")
 BuiltInFunction.len_l						= BuiltInFunction("len_l")
@@ -2439,6 +2480,7 @@ global_symbol_table.set("is_list", BuiltInFunction.is_list)
 global_symbol_table.set("is_function", BuiltInFunction.is_function)
 global_symbol_table.set("append_l", BuiltInFunction.append_l)
 global_symbol_table.set("pop_l", BuiltInFunction.pop_l)
+global_symbol_table.set("set_l", BuiltInFunction.set_l)
 global_symbol_table.set("extend_l", BuiltInFunction.extend_l)
 global_symbol_table.set("len_l", BuiltInFunction.len_l)
 global_symbol_table.set("rand", BuiltInFunction.rand)
