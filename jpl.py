@@ -2068,6 +2068,25 @@ class BuiltInFunction(BaseFunction):
 		return RTResult().success(String(datetime.datetime.now()))
 	execute_datetime.arg_names = []
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_split(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+		separator = exec_ctx.symbol_table.get('separator')
+		if not isinstance(string, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be string",
+				exec_ctx
+			))
+		if not isinstance(separator, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be string",
+				exec_ctx
+			))
+		return RTResult().success(List((string.value).split(separator.value)))
+	execute_split.arg_names = ['string', 'separator']
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -2084,6 +2103,7 @@ BuiltInFunction.run							= BuiltInFunction("run")
 BuiltInFunction.len_l						= BuiltInFunction("len_l")
 BuiltInFunction.rand						= BuiltInFunction("rand")
 BuiltInFunction.datetime					= BuiltInFunction("datetime")
+BuiltInFunction.split					= BuiltInFunction("split")
 
 #######################################
 # CONTEXT
@@ -2399,6 +2419,7 @@ global_symbol_table.set("len_l", BuiltInFunction.len_l)
 global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("datetime", BuiltInFunction.datetime)
+global_symbol_table.set("split", BuiltInFunction.split)
 
 
 def run(fn, text):

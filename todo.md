@@ -1,5 +1,5 @@
 # TODO
-- [ ] split_l(:string) # you can split strings to lists # -
+- [X] split_l(:string, :separator) # you can split strings to lists # -
 - [ ] join_l(:list) # you can join strings to lists # -
 - [X] rand(:start_val, :end_val) # random ints # -
 - [ ] find_l(:string, :list) # find a string in list and get the index # -
