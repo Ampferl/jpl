@@ -1,0 +1,60 @@
+statements		: NEWLINE* statement (NEWLINE+ statement)* NEWLINE*
+
+statement		: KEYWORD:RETURN expr?
+				: KEYWORD:CONTINUE 
+				: KEYWORD:BREAK 
+				: expr
+
+expr    		: KEYWORD:VAR IDENTIFIER EQ expr
+				: comp-expr ((KEYWORD:AND|KEYWORD:OR) comp-expr)*
+
+comp-expr		: NOT comp-expr
+				: arith-expr ((EE|LT|GT|LTE|GTE) arith-expr)*
+
+arith-expr		: term ((PLUS|MINUS) term)*
+
+term    		: factor ((MUL|DIV) factor)*
+
+factor  		: (PLUS|MINUS) factor
+				: power
+
+power			: call (POW factor)*
+
+call			: atom (LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? RPAREN)?
+
+atom			: INT|FLOAT|STRING|IDENTIFIER
+				: LPAREN expr RPAREN
+				: list-expr
+				: if-expr
+				: for-expr
+				: while-expr
+				: function-def
+
+list-expr		: LSQUARE (expr (COMMA expr)*)? RSQUARE
+
+if-expr			: KEYWORD:ELIF LPAREN expr RPAREN LBRACE 
+				  (statement elif-expr|else-expr?)
+				  (NEWLINE statements RBRACE|elif-expr|else-expr)
+
+elif-expr		: KEYWORD:IF LPAREN expr RPAREN LBRACE 
+				  (statement elif-expr|else-expr?)
+				| (NEWLINE statements RBRACE|elif-expr|else-expr)
+
+else-expr		: KEYWORD: ELSE
+				  statement
+				| (NEWLINE statements RBRACE)
+
+for-expr		: KEYWORD:FOR LPAREN IDENTIFIER EQ expr SC expr 
+  				  (SC expr)? LBRACE 
+				  statement
+				| (NEWLINE statements RBRACE)
+
+while-expr		: KEYWORD:WHILE LPAREN expr RPAREN LBRACE
+				  statement
+				| (NEWLINE statements RBRACE)
+
+function-def	: KEYWORD:FUNCTION IDENTIFIER? 
+				  LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? 
+				  RPAREN LBRACE
+				  expr
+				| (NEWLINE statements RBRACE)

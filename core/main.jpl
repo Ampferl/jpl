@@ -1,0 +1,14 @@
+# Math
+run("core/lib/math/pi.jpl")
+run("core/lib/math/mod.jpl")
+run("core/lib/math/pow.jpl")
+
+# Shell
+run("core/lib/shell/clear.jpl")
+
+# Lists
+run("core/lib/lists/get_l.jpl")
+
+# Datetime
+run("core/lib/datetime/date.jpl")
+run("core/lib/datetime/time.jpl")

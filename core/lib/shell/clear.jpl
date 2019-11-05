@@ -1,0 +1,3 @@
+function clear(){
+    print(" " * 10000)
+}

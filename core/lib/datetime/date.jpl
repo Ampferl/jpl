@@ -1,0 +1,51 @@
+function date(){
+    var date = split(datetime(), " ")
+    return date / 0
+}
+
+function date_year(){
+    var year = split(date(), "-")
+    return year / 0
+}
+
+function date_month(){
+    var month = split(date(), "-")
+    return month / 1
+}
+
+function date_month_name(){
+    var month = date_month()
+    if(month == "01"){
+        var month_name = "January"
+    }elif(month == "02"){
+        var month_name = "February"
+    }elif(month == "03"){
+        var month_name = "March"
+    }elif(month == "04"){
+        var month_name = "April"
+    }elif(month == "05"){
+        var month_name = "May"
+    }elif(month == "06"){
+        var month_name = "June"
+    }elif(month == "07"){
+        var month_name = "July"
+    }elif(month == "08"){
+        var month_name = "August"
+    }elif(month == "09"){
+        var month_name = "September"
+    }elif(month == "10"){
+        var month_name = "October"
+    }elif(month == "11"){
+        var month_name = "November"
+    }elif(month == "12"){
+        var month_name = "December"
+    }else{
+        var month_name = "error"
+    }
+    return month_name
+}
+
+function date_day(){
+    var day = split(date(), "-")
+    return day / 2
+}
