@@ -4,13 +4,16 @@
 
 from core.strings_with_arrows import *
 
-import os
-currentDirectory = os.getcwd()
-
+import hashlib
 import string
 import math
 import random
 import datetime
+import os
+
+currentDirectory = os.getcwd()
+
+
 
 # Constants
 exec(compile(source=open(currentDirectory + '/core/errors.py').read(), filename='errors.py', mode='exec'))
@@ -86,6 +89,11 @@ global_symbol_table.set("split", BuiltInFunction.split)
 global_symbol_table.set("join", BuiltInFunction.join)
 global_symbol_table.set("replace", BuiltInFunction.replace)
 global_symbol_table.set("search_l", BuiltInFunction.search_l)
+# Formats
+global_symbol_table.set("int", BuiltInFunction.int)
+global_symbol_table.set("str", BuiltInFunction.str)
+global_symbol_table.set("float", BuiltInFunction.float)
+global_symbol_table.set("hash", BuiltInFunction.hash)
 
 
 def run(fn, text):
