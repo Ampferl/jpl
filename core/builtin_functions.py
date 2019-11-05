@@ -487,6 +487,38 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_round(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+		digits = exec_ctx.symbol_table.get('digits')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+		if not isinstance(digits, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be a Number ",
+				exec_ctx
+			))
+			
+		try:
+			res = round(number.value, digits.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant round number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_round.arg_names = ['number', 'digits']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -510,3 +542,5 @@ BuiltInFunction.int							= BuiltInFunction("int")
 BuiltInFunction.str							= BuiltInFunction("str")
 BuiltInFunction.float						= BuiltInFunction("float")
 BuiltInFunction.hash						= BuiltInFunction("hash")
+# Math
+BuiltInFunction.round						= BuiltInFunction("round")

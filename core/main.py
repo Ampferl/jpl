@@ -94,6 +94,8 @@ global_symbol_table.set("int", BuiltInFunction.int)
 global_symbol_table.set("str", BuiltInFunction.str)
 global_symbol_table.set("float", BuiltInFunction.float)
 global_symbol_table.set("hash", BuiltInFunction.hash)
+# Math
+global_symbol_table.set("round", BuiltInFunction.round)
 
 
 def run(fn, text):

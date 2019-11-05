@@ -113,6 +113,7 @@ run(:path_to_file)
 - `mod(num, divisor)`
 - `rand(start_value, end_value)`
 - `pi()`
+- `round(:number, :digits)`
 #### Formats
 - `int(:string)`
 - `str(:number)`
