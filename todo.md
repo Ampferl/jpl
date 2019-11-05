@@ -25,9 +25,9 @@
 - [ ] tan(:number) # -
 
 ### Format
-- [ ] int(:string) # -
-- [ ] str(:number) #-
-- [ ] float(:number/:string) # -
+- [X] int(:string) # -
+- [X] str(:number) #-
+- [X] float(:number/:string) # -
 - [ ] hash(:string, :type) # -/*
 - [ ] hex(:string) # -
 - [ ] bin(:string) # -

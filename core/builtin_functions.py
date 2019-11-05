@@ -432,6 +432,30 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_float(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+
+		if not isinstance(string, String) and not isinstance(string, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number or a String",
+				exec_ctx
+			))
+			
+		try:
+			res = float(string.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant format this number or string to a float",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_float.arg_names = ['string']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -453,3 +477,4 @@ BuiltInFunction.search_l					= BuiltInFunction("search_l")
 # Formats
 BuiltInFunction.int							= BuiltInFunction("int")
 BuiltInFunction.str							= BuiltInFunction("str")
+BuiltInFunction.float						= BuiltInFunction("float")
