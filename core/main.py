@@ -88,6 +88,7 @@ global_symbol_table.set("replace", BuiltInFunction.replace)
 global_symbol_table.set("search_l", BuiltInFunction.search_l)
 # Formats
 global_symbol_table.set("int", BuiltInFunction.int)
+global_symbol_table.set("str", BuiltInFunction.str)
 
 
 def run(fn, text):

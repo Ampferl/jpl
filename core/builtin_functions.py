@@ -408,6 +408,30 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_str(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number",
+				exec_ctx
+			))
+			
+		try:
+			res = str(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant format this number to a string",
+				exec_ctx
+			))
+
+		return RTResult().success(String(res))
+	execute_str.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -428,3 +452,4 @@ BuiltInFunction.replace						= BuiltInFunction("replace")
 BuiltInFunction.search_l					= BuiltInFunction("search_l")
 # Formats
 BuiltInFunction.int							= BuiltInFunction("int")
+BuiltInFunction.str							= BuiltInFunction("str")
