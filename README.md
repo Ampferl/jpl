@@ -17,6 +17,7 @@ You also need to download [Python 3](https://www.python.org/downloads/release/py
 
 
 If everything is installed, you can go to the downloaded folder and enter `python3 shell.py` into the console.
+Or execute a program immediately: `python3 shell.py example/functions.jpl`
 
 Now you can use the programming language!
 

@@ -43,7 +43,8 @@
 - [ ] mysql_row(:db_query_result) # - (Return as List)
 
 ## Python Code
-- [ ] seperate language in different files to clean the project # -
+- [X] seperate language in different files to clean the project # -
+- [X] start program from command-line
 - [ ] Add Classes and Object orientation # -
 
 
