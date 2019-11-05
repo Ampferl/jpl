@@ -384,6 +384,109 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_int(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+
+		if not isinstance(string, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a String",
+				exec_ctx
+			))
+			
+		try:
+			res = int(string.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant format this string to a number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_int.arg_names = ['string']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_str(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number",
+				exec_ctx
+			))
+			
+		try:
+			res = str(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant format this number to a string",
+				exec_ctx
+			))
+
+		return RTResult().success(String(res))
+	execute_str.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_float(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+
+		if not isinstance(string, String) and not isinstance(string, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number or a String",
+				exec_ctx
+			))
+			
+		try:
+			res = float(string.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant format this number or string to a float",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_float.arg_names = ['string']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_hash(self, exec_ctx):
+		string = exec_ctx.symbol_table.get('string')
+		type_ = exec_ctx.symbol_table.get('type')
+
+		if not isinstance(string, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number or a String",
+				exec_ctx
+			))
+			
+		if type_.value == "sha256":
+			res = hashlib.sha256((string.value).encode()).hexdigest()
+		elif type_.value == "sha1":
+			res = hashlib.sha1((string.value).encode()).hexdigest()
+		elif type_.value == "sha512":
+			res = hashlib.sha512((string.value).encode()).hexdigest()
+		elif type_.value == "md5":
+			res = hashlib.md5((string.value).encode()).hexdigest()
+		else:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Type is not available",
+				exec_ctx
+			))
+
+		return RTResult().success(String(res))
+	execute_hash.arg_names = ['string', 'type']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -402,3 +505,8 @@ BuiltInFunction.split						= BuiltInFunction("split")
 BuiltInFunction.join						= BuiltInFunction("join")
 BuiltInFunction.replace						= BuiltInFunction("replace")
 BuiltInFunction.search_l					= BuiltInFunction("search_l")
+# Formats
+BuiltInFunction.int							= BuiltInFunction("int")
+BuiltInFunction.str							= BuiltInFunction("str")
+BuiltInFunction.float						= BuiltInFunction("float")
+BuiltInFunction.hash						= BuiltInFunction("hash")

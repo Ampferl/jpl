@@ -25,13 +25,14 @@
 - [ ] tan(:number) # -
 
 ### Format
-- [ ] int(:string) # -
-- [ ] str(:number) #-
-- [ ] float(:number/:string) # -
-- [ ] hash(:string, :type) # -/*
-- [ ] hex(:string) # -
-- [ ] bin(:string) # -
-- [ ] isformat(:expr, :format) # -
+- [X] int(:string) # -
+- [X] str(:number) #-
+- [X] float(:number/:string) # -
+- [X] hash(:string, :type) # -/*
+- [X] is_string(:string) # -
+- [X] is_number(:number) # -
+- [X] is_function(:function) # -
+- [X] is_list(:list) # -
 
 ### File i/o
 - [ ] read_file(:path) # output in a list(every line is one list element)

@@ -113,6 +113,11 @@ run(:path_to_file)
 - `mod(num, divisor)`
 - `rand(start_value, end_value)`
 - `pi()`
+#### Formats
+- `int(:string)`
+- `str(:number)`
+- `float(:string/:number)`
+- `hash(:string, :type)` `(Types: md5, sha1, sha256, sha512)`
 #### Date
 - `datetime()`
 - `date()`

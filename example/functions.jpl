@@ -74,3 +74,11 @@ print("--------Date---------")
 print(datetime())
 print(date())
 print(time())
+
+print("")
+print("--------HASH---------")
+var HelloJPL = "Hello JPL"
+print("MD5: " + hash(HelloJPL, "md5"))
+print("SHA1: " + hash(HelloJPL, "sha1"))
+print("SHA256: " + hash(HelloJPL, "sha256"))
+print("SHA512: " + hash(HelloJPL, "sha512"))
