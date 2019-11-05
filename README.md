@@ -114,6 +114,7 @@ run(:path_to_file)
 - `rand(start_value, end_value)`
 - `pi()`
 - `round(:number, :digits)`
+- `cos(:number)`
 #### Formats
 - `int(:string)`
 - `str(:number)`
