@@ -97,6 +97,7 @@ global_symbol_table.set("hash", BuiltInFunction.hash)
 global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("round", BuiltInFunction.round)
 global_symbol_table.set("cos", BuiltInFunction.cos)
+global_symbol_table.set("sin", BuiltInFunction.sin)
 
 
 def run(fn, text):

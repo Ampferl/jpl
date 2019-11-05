@@ -115,6 +115,7 @@ run(:path_to_file)
 - `pi()`
 - `round(:number, :digits)`
 - `cos(:number)`
+- `sin(:number)`
 #### Formats
 - `int(:string)`
 - `str(:number)`

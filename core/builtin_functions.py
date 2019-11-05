@@ -544,6 +544,31 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_sin(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+			
+		try:
+			res = math.sin(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Sin() dont work with this number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_sin.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -570,3 +595,4 @@ BuiltInFunction.hash						= BuiltInFunction("hash")
 BuiltInFunction.rand						= BuiltInFunction("rand")
 BuiltInFunction.round						= BuiltInFunction("round")
 BuiltInFunction.cos							= BuiltInFunction("cos")
+BuiltInFunction.sin							= BuiltInFunction("sin")
