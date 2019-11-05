@@ -98,6 +98,7 @@ global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("round", BuiltInFunction.round)
 global_symbol_table.set("cos", BuiltInFunction.cos)
 global_symbol_table.set("sin", BuiltInFunction.sin)
+global_symbol_table.set("tan", BuiltInFunction.tan)
 
 
 def run(fn, text):

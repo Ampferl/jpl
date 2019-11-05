@@ -116,6 +116,7 @@ run(:path_to_file)
 - `round(:number, :digits)`
 - `cos(:number)`
 - `sin(:number)`
+- `tan(:number)`
 #### Formats
 - `int(:string)`
 - `str(:number)`
