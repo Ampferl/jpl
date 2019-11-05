@@ -28,9 +28,7 @@
 - [X] int(:string) # -
 - [X] str(:number) #-
 - [X] float(:number/:string) # -
-- [ ] hash(:string, :type) # -/*
-- [ ] hex(:string) # -
-- [ ] bin(:string) # -
+- [X] hash(:string, :type) # -/*
 - [ ] isformat(:expr, :format) # -
 
 ### File i/o

@@ -117,6 +117,7 @@ run(:path_to_file)
 - `int(:string)`
 - `str(:number)`
 - `float(:string/:number)`
+- `hash(:string, :type)` `(Types: md5, sha1, sha256, sha512)`
 #### Date
 - `datetime()`
 - `date()`
