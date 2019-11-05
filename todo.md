@@ -41,8 +41,10 @@
 - [ ] mysql_connect(:serverip, :username, :password, :database) # -
 - [ ] mysql_query(:sql_statement, :db_connection) # -
 - [ ] mysql_row(:db_query_result) # - (Return as List)
+
 ## Python Code
 - [ ] seperate language in different files to clean the project # -
+- [ ] Add Classes and Object orientation # -
 
 
 // APPEND TO ALL LIST FUNCTIONS '_l' TO IDENTIFY THEM! (for example 'find_l()')

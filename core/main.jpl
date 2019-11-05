@@ -1,14 +1,14 @@
 # Math
-run("core/math/pi.jpl")
-run("core/math/mod.jpl")
-run("core/math/pow.jpl")
+run("core/lib/math/pi.jpl")
+run("core/lib/math/mod.jpl")
+run("core/lib/math/pow.jpl")
 
 # Shell
-run("core/shell/clear.jpl")
+run("core/lib/shell/clear.jpl")
 
 # Lists
-run("core/lists/get_l.jpl")
+run("core/lib/lists/get_l.jpl")
 
 # Datetime
-run("core/datetime/date.jpl")
-run("core/datetime/time.jpl")
+run("core/lib/datetime/date.jpl")
+run("core/lib/datetime/time.jpl")
