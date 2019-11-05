@@ -29,7 +29,10 @@
 - [X] str(:number) #-
 - [X] float(:number/:string) # -
 - [X] hash(:string, :type) # -/*
-- [ ] isformat(:expr, :format) # -
+- [X] is_string(:string) # -
+- [X] is_number(:number) # -
+- [X] is_function(:function) # -
+- [X] is_list(:list) # -
 
 ### File i/o
 - [ ] read_file(:path) # output in a list(every line is one list element)
