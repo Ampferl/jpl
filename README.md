@@ -132,5 +132,8 @@ run(:path_to_file)
 - `time()`
 #### String
 - `replace(string, replace_this, replacer)`
+#### File I/O
+- `read_file(:path)` `(output -> list)`
+- `write_file(:path, :list, :append)` `(:append: true/false)`
 
 ## [ToDo List](todo.md)
