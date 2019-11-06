@@ -101,6 +101,7 @@ global_symbol_table.set("sin", BuiltInFunction.sin)
 global_symbol_table.set("tan", BuiltInFunction.tan)
 # File i/o
 global_symbol_table.set("read_file", BuiltInFunction.read_file)
+global_symbol_table.set("write_file", BuiltInFunction.write_file)
 
 
 def run(fn, text):
