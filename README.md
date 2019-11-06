@@ -135,5 +135,3 @@ run(:path_to_file)
 #### File I/O
 - `read_file(:path)` `(output -> list)`
 - `write_file(:path, :list, :append)` `(:append: true/false)`
-
-## [ToDo List](todo.md)
