@@ -594,6 +594,34 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_read_file(self, exec_ctx):
+		path = exec_ctx.symbol_table.get('path')
+
+		if not isinstance(path, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a String ",
+				exec_ctx
+			))
+
+		lines = []
+		try:
+			f = open(path.value, "r")
+			for i in f:
+				lines.append(String(i))
+			f.close() 
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				f"Cant find a file under the path {path.value}",
+				exec_ctx
+			))
+
+		return RTResult().success(List(lines))
+	execute_read_file.arg_names = ['path']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -622,3 +650,5 @@ BuiltInFunction.round						= BuiltInFunction("round")
 BuiltInFunction.cos							= BuiltInFunction("cos")
 BuiltInFunction.sin							= BuiltInFunction("sin")
 BuiltInFunction.tan							= BuiltInFunction("tan")
+# File i/o
+BuiltInFunction.read_file					= BuiltInFunction("read_file")

@@ -132,5 +132,7 @@ run(:path_to_file)
 - `time()`
 #### String
 - `replace(string, replace_this, replacer)`
+#### File I/O
+- `read_file(:path)` `(output -> list)`
 
 ## [ToDo List](todo.md)
