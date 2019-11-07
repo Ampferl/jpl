@@ -487,6 +487,205 @@ class BuiltInFunction(BaseFunction):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+	def execute_round(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+		digits = exec_ctx.symbol_table.get('digits')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+		if not isinstance(digits, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be a Number ",
+				exec_ctx
+			))
+			
+		try:
+			res = round(number.value, digits.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cant round number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_round.arg_names = ['number', 'digits']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_cos(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+			
+		try:
+			res = math.cos(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Cos() dont work with this number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_cos.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_sin(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+			
+		try:
+			res = math.sin(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Sin() dont work with this number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_sin.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_tan(self, exec_ctx):
+		number = exec_ctx.symbol_table.get('number')
+
+		if not isinstance(number, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a Number ",
+				exec_ctx
+			))
+
+			
+		try:
+			res = math.tan(number.value)
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Tan() dont work with this number",
+				exec_ctx
+			))
+
+		return RTResult().success(Number(res))
+	execute_tan.arg_names = ['number']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_read_file(self, exec_ctx):
+		path = exec_ctx.symbol_table.get('path')
+
+		if not isinstance(path, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a String ",
+				exec_ctx
+			))
+
+		lines = []
+		try:
+			f = open(path.value, "r")
+			for i in f:
+				lines.append(String(i))
+			f.close() 
+		except:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				f"Cant find a file under the path {path.value}",
+				exec_ctx
+			))
+
+		return RTResult().success(List(lines))
+	execute_read_file.arg_names = ['path']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+	def execute_write_file(self, exec_ctx):
+		path = exec_ctx.symbol_table.get('path')
+		list_ = exec_ctx.symbol_table.get('list')
+		append = exec_ctx.symbol_table.get('append')
+
+		if not isinstance(path, String):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"First Argument must be a String ",
+				exec_ctx
+			))
+
+		if not isinstance(list_, List):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Second Argument must be a List ",
+				exec_ctx
+			))
+		
+		if not isinstance(append, Number):
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Third Argument must be a Number(1 or 0) or true or false ",
+				exec_ctx
+			))
+	
+		if int(append.value) == 1:
+			try:
+				f = open(path.value, "a")
+				relist = str(list_).split(", ")
+				for i in relist:
+					f.write(i+"\n")
+				f.close()
+			except:
+				return RTResult().failure(RTError(
+					self.pos_start, self.pos_end,
+					f"Error appending list to {path.value}",
+					exec_ctx
+				))
+		elif int(append.value) == 0:
+			try:
+				f = open(path.value, "w")
+				relist = str(list_).split(", ")
+				for i in relist:
+					f.write(i+"\n")
+				f.close()
+			except:
+				return RTResult().failure(RTError(
+					self.pos_start, self.pos_end,
+					f"Error writing list to {path.value}",
+					exec_ctx
+				))
+		else:
+			return RTResult().failure(RTError(
+				self.pos_start, self.pos_end,
+				"Third Argument doesnt work...",
+				exec_ctx
+			))
+
+		return RTResult().success(Number.null)
+	execute_write_file.arg_names = ['path', 'list', 'append']
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 BuiltInFunction.print						= BuiltInFunction("print")
 BuiltInFunction.input						= BuiltInFunction("input")
 BuiltInFunction.is_number					= BuiltInFunction("is_number")
@@ -499,7 +698,6 @@ BuiltInFunction.set_l						= BuiltInFunction("set_l")
 BuiltInFunction.extend_l					= BuiltInFunction("extend_l")
 BuiltInFunction.run							= BuiltInFunction("run")
 BuiltInFunction.len_l						= BuiltInFunction("len_l")
-BuiltInFunction.rand						= BuiltInFunction("rand")
 BuiltInFunction.datetime					= BuiltInFunction("datetime")
 BuiltInFunction.split						= BuiltInFunction("split")
 BuiltInFunction.join						= BuiltInFunction("join")
@@ -510,3 +708,12 @@ BuiltInFunction.int							= BuiltInFunction("int")
 BuiltInFunction.str							= BuiltInFunction("str")
 BuiltInFunction.float						= BuiltInFunction("float")
 BuiltInFunction.hash						= BuiltInFunction("hash")
+# Math
+BuiltInFunction.rand						= BuiltInFunction("rand")
+BuiltInFunction.round						= BuiltInFunction("round")
+BuiltInFunction.cos							= BuiltInFunction("cos")
+BuiltInFunction.sin							= BuiltInFunction("sin")
+BuiltInFunction.tan							= BuiltInFunction("tan")
+# File i/o
+BuiltInFunction.read_file					= BuiltInFunction("read_file")
+BuiltInFunction.write_file					= BuiltInFunction("write_file")

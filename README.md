@@ -113,6 +113,10 @@ run(:path_to_file)
 - `mod(num, divisor)`
 - `rand(start_value, end_value)`
 - `pi()`
+- `round(:number, :digits)`
+- `cos(:number)`
+- `sin(:number)`
+- `tan(:number)`
 #### Formats
 - `int(:string)`
 - `str(:number)`
@@ -128,5 +132,6 @@ run(:path_to_file)
 - `time()`
 #### String
 - `replace(string, replace_this, replacer)`
-
-## [ToDo List](todo.md)
+#### File I/O
+- `read_file(:path)` `(output -> list)`
+- `write_file(:path, :list, :append)` `(:append: true/false)`

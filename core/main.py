@@ -82,7 +82,6 @@ global_symbol_table.set("pop_l", BuiltInFunction.pop_l)
 global_symbol_table.set("set_l", BuiltInFunction.set_l)
 global_symbol_table.set("extend_l", BuiltInFunction.extend_l)
 global_symbol_table.set("len_l", BuiltInFunction.len_l)
-global_symbol_table.set("rand", BuiltInFunction.rand)
 global_symbol_table.set("run", BuiltInFunction.run)
 global_symbol_table.set("datetime", BuiltInFunction.datetime)
 global_symbol_table.set("split", BuiltInFunction.split)
@@ -94,6 +93,15 @@ global_symbol_table.set("int", BuiltInFunction.int)
 global_symbol_table.set("str", BuiltInFunction.str)
 global_symbol_table.set("float", BuiltInFunction.float)
 global_symbol_table.set("hash", BuiltInFunction.hash)
+# Math
+global_symbol_table.set("rand", BuiltInFunction.rand)
+global_symbol_table.set("round", BuiltInFunction.round)
+global_symbol_table.set("cos", BuiltInFunction.cos)
+global_symbol_table.set("sin", BuiltInFunction.sin)
+global_symbol_table.set("tan", BuiltInFunction.tan)
+# File i/o
+global_symbol_table.set("read_file", BuiltInFunction.read_file)
+global_symbol_table.set("write_file", BuiltInFunction.write_file)
 
 
 def run(fn, text):
