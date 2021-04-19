@@ -135,3 +135,8 @@ run(:path_to_file)
 #### File I/O
 - `read_file(:path)` `(output -> list)`
 - `write_file(:path, :list, :append)` `(:append: true/false)`
+
+## Resources
+- [The super tiny interpreter Tutorial](https://github.com/keyz/the-super-tiny-interpreter)
+- [Lets build a simple Interpreter](https://ruslanspivak.com/lsbasi-part1/)
+- [Learn Programming by Morpheus Tutorial](https://www.youtube.com/watch?v=nVMlDghNcHg&list=PLNmsVeXQZj7onyAB57T0xqV2ZVSZOo79a)
